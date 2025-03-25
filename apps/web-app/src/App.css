@@ -1,0 +1,153 @@
+body {
+  margin: 0;
+  color: #333;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  background-image: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-brand h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  line-height: 1.1;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 1rem;
+  padding-bottom: 2rem;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0 2rem 0;
+}
+
+.logo-react {
+  width: 64px;
+  height: 64px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo-flutter {
+  height: 60px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo-react:hover,
+.logo-flutter:hover {
+  transform: scale(1.1);
+}
+
+.content p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #4a4a4a;
+}
+
+.api-message {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2e7d32;
+  background-color: rgba(46, 125, 50, 0.1);
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 80%;
+  border: 1px solid rgba(46, 125, 50, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.logo-go {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.increment-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.increment-button:hover {
+  background-color: #1b5e20;
+}
+
+.flutter-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#flutter-container {
+  width: 75vw;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#flutter-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}

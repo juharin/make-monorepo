@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo "Running pre-commit hooks..."
+
+# Store the current working directory
+PWD=$(pwd)
+
+# Lint staged files
+echo "Linting staged files..."
+
+# Check Web app files
+if git diff --cached --name-only | grep -q "^apps/web-app/"; then
+  cd apps/web-app
+  npm run lint
+  if [ $? -ne 0 ]; then
+    echo "Web app linting failed!"
+    exit 1
+  fi
+  cd $PWD
+fi
+
+# Check Go files
+if git diff --cached --name-only | grep -q "^apps/api-server/"; then
+  cd apps/api-server
+  go fmt ./... >/dev/null
+  golangci-lint run
+  if [ $? -ne 0 ]; then
+    echo "Go linting failed!"
+    exit 1
+  fi
+  cd $PWD
+fi
+
+# Check Flutter files
+if git diff --cached --name-only | grep -q "^apps/mobile_app/"; then
+  cd apps/mobile_app
+  flutter analyze
+  if [ $? -ne 0 ]; then
+    echo "Flutter analysis failed!"
+    exit 1
+  fi
+  cd $PWD
+fi
+
+echo "Pre-commit checks passed!"
+exit 0
