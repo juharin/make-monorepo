@@ -39,7 +39,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '20'
       - name: Install dependencies
         run: cd apps/web-app && npm ci
       - name: Lint
@@ -58,7 +58,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: stable
+          go-version: '1.24'
       - name: Install dependencies
         run: cd apps/api-server && go mod download
       - name: golangci-lint
@@ -79,7 +79,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.10.0'
+          flutter-version: '3.29.2'
       - name: Install dependencies
         run: cd apps/mobile_app && flutter pub get
       - name: Lint
