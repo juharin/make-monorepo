@@ -66,6 +66,7 @@ jobs:
         with:
           version: v2.0
           working-directory: apps/api-server
+          args: --no-config
       - name: Test
         run: cd apps/api-server && go test ./...
       - name: Build
