@@ -11,3 +11,11 @@ bin/
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# Testing
+coverage/
+.nyc_output/
+.vitest/
+*.lcov
+coverage-report/
+test-results/

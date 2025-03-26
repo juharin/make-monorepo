@@ -1,0 +1,19 @@
+# Canvaskit files
+/apps/web-app/public/canvaskit.js
+/apps/web-app/public/canvaskit/*.js
+/apps/web-app/public/canvaskit/**/*.js
+
+# Flutter files
+/apps/web-app/public/flutter*.js
+/apps/web-app/public/flutter_*.js
+
+# Dart files
+/apps/web-app/public/main.dart.js
+/apps/web-app/public/*.dart.js
+
+/apps/web-app/public/canvaskit/
+/apps/web-app/public/flutter.js
+/apps/web-app/public/flutter_bootstrap.js
+/apps/web-app/public/flutter_service_worker.js
+/apps/web-app/public/main.dart.js
+

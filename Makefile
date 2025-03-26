@@ -122,8 +122,12 @@ lint-mobile:
 	@echo "Linting mobile app..."
 	@cd $(MOBILE_APP_PATH) && flutter analyze
 
+lint-mobile-host:
+	@echo "Linting mobile host app..."
+	@cd $(MOBILE_HOST_APP_PATH) && flutter analyze
+
 # Formatting
-format: format-web format-api format-mobile
+format: format-web format-api format-mobile format-mobile-host
 	@echo "All code formatted"
 
 format-web:
