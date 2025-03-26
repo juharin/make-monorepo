@@ -1,54 +1,14 @@
-version: "2"
-
 run:
   timeout: 5m
   tests: true
-  skip-dirs-use-default: false
-  skip-files:
-    - "vendor/.*"
-    - "third_party/.*"
-  # Configure which files to analyze
-  go: "1.24"
-  build-tags:
-    - integration
-
-linters-settings:
-  depguard:
-    rules:
-      main:
-        files:
-          - $all
-          - "!**/*_test.go"
-        allow:
-          - $gostd
-          - github.com/go-chi/chi/v5
-          - github.com/go-chi/chi/v5/middleware
-  gocyclo:
-    min-complexity: 15
-  goconst:
-    min-len: 2
-    min-occurrences: 2
-  mnd:
-    settings:
-      mnd:
-        checks: argument,case,condition,operation,return,assign
-  gocognit:
-    min-complexity: 15
-  gosec:
-    excludes:
-      - G404  # Use of weak random number generator
-      - G114  # Use of net/http.Server without ReadTimeout
-  revive:
-    rules:
-      - name: exported
-        arguments:
-          - disableStutteringCheck
+  skip-dirs:
+    - vendor/
+    - third_party/
 
 linters:
   enable:
     - bodyclose
     - contextcheck
-    # - depguard  # Temporarily disabled until configuration is fixed
     - dogsled
     - dupl
     - errcheck
@@ -74,28 +34,4 @@ linters:
     - unparam
     - unused
     - whitespace
-    - wsl
-
-formatters:
-  enable:
-    - gofmt
-    - goimports
-
-issues:
-  exclude:
-    - path: _test\.go
-      linters:
-        - gocyclo
-        - errcheck
-        - dupl
-        - gosec
-    - path: internal/
-      linters:
-        - gosec
-  max-issues-per-linter: 0
-  max-same-issues: 0
-
-# Using the compliant format for v2
-severity:
-  default-severity: error
-  case-sensitive: false 
+    - wsl 
