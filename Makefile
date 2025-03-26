@@ -75,7 +75,7 @@ test: test-web test-api test-mobile
 
 test-web:
 	@echo "Testing web app..."
-	@cd $(WEB_APP_PATH) && npm test -- run
+	@cd $(WEB_APP_PATH) && NODE_OPTIONS="--experimental-vm-modules --no-warnings" npm test -- run --dom
 
 test-api:
 	@echo "Testing API server..."
@@ -116,6 +116,10 @@ lint-web:
 
 lint-api:
 	@echo "Linting API server..."
+	@if ! command -v golangci-lint &> /dev/null || [[ "$$(golangci-lint --version 2>&1)" != *"version 2."* ]]; then \
+		echo "Installing golangci-lint v2.x..."; \
+		curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $$(go env GOPATH)/bin v2.1.1; \
+	fi
 	@cd $(API_SERVER_PATH) && golangci-lint run
 
 lint-mobile:
