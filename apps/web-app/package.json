@@ -9,7 +9,7 @@
     "preview": "rsbuild preview",
     "lint": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --ext .js,.jsx --fix",
-    "test": "vitest",
+    "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },

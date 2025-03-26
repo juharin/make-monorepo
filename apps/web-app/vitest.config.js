@@ -18,5 +18,14 @@ export default defineConfig({
         '**/*.spec.{js,jsx}',
       ],
     },
+    deps: {
+      inline: ['vitest-canvas-mock'],
+    },
+    // Add Node.js polyfills for CI environment
+    browser: {
+      enabled: true,
+      name: 'jsdom',
+      provider: 'jsdom',
+    },
   },
 }); 
