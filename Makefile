@@ -75,7 +75,7 @@ test: test-web test-api test-mobile
 
 test-web:
 	@echo "Testing web app..."
-	@cd $(WEB_APP_PATH) && npm test
+	@cd $(WEB_APP_PATH) && npm test -- run
 
 test-api:
 	@echo "Testing API server..."

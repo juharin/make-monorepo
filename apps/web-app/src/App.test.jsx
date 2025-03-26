@@ -24,6 +24,7 @@ describe('App', () => {
     expect(screen.getByText('React x Flutter')).toBeInTheDocument();
     expect(screen.getByText('You have clicked the button 0 times')).toBeInTheDocument();
     expect(screen.getByRole('button', { class: 'increment-button' })).toBeInTheDocument();
+    expect(screen.getByTestId('flutter-wrapper')).toBeInTheDocument();
   });
 
   it('increments counter when button is clicked', () => {

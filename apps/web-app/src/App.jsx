@@ -41,8 +41,13 @@ const App = () => {
             Increment
           </button>
         </div>
-        <div className="flutter-wrapper">
-          <div id="flutter-container"></div>
+        <div
+          className="flutter-wrapper"
+          data-testid="flutter-wrapper"
+        >
+          <div
+            id="flutter-container"
+          />
         </div>
       </div>
     </div>
