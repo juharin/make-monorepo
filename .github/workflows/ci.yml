@@ -14,6 +14,7 @@ jobs:
       web-changed: ${{ steps.filter.outputs.web }}
       api-changed: ${{ steps.filter.outputs.api }}
       mobile-changed: ${{ steps.filter.outputs.mobile }}
+      mobile-host-changed: ${{ steps.filter.outputs.mobile-host }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v2
@@ -28,6 +29,9 @@ jobs:
               - 'packages/models/go/**'
             mobile:
               - 'apps/mobile_app/**'
+              - 'packages/models/dart/**'
+            mobile-host:
+              - 'apps/mobile_host_app/**'
               - 'packages/models/dart/**'
 
   build-web:
@@ -90,3 +94,22 @@ jobs:
         run: cd apps/mobile_app && flutter test
       - name: Build APK
         run: cd apps/mobile_app && flutter build apk
+
+  build-mobile-host:
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.mobile-host-changed == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.2'
+      - name: Install dependencies
+        run: cd apps/mobile_host_app && flutter pub get
+      - name: Lint
+        run: cd apps/mobile_host_app && flutter analyze
+      - name: Test
+        run: cd apps/mobile_host_app && flutter test
+      - name: Build APK
+        run: cd apps/mobile_host_app && flutter build apk
