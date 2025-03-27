@@ -54,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text('You have pushed the Host app button this many times:'),
             Text(
               '$_counter',
+              key: const Key('host_app_counter'),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 20),
@@ -67,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        key: const Key('host_app_fab'),
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),

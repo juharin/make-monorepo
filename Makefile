@@ -70,7 +70,7 @@ build-mobile-web:
 	@echo "Mobile app for web built successfully"
 
 # Test targets
-test: test-web test-api test-mobile
+test: test-web test-api test-mobile test-mobile-host
 	@echo "All tests passed"
 
 test-web:
@@ -84,6 +84,10 @@ test-api:
 test-mobile:
 	@echo "Testing mobile app..."
 	@cd $(MOBILE_APP_PATH) && flutter test
+
+test-mobile-host:
+	@echo "Testing mobile host app..."
+	@cd $(MOBILE_HOST_APP_PATH) && flutter test
 
 # Development servers
 dev-web:
@@ -107,7 +111,7 @@ dev-mobile-web:
 	@cd $(MOBILE_APP_PATH) && flutter run -d chrome --wasm
 
 # Linting
-lint: lint-web lint-api lint-mobile
+lint: lint-web lint-api lint-mobile lint-mobile-host
 	@echo "All lint checks passed"
 
 lint-web:
@@ -142,6 +146,10 @@ format-mobile:
 	@echo "Formatting Flutter code..."
 	@cd $(MOBILE_APP_PATH) && flutter format .
 
+format-mobile-host:
+	@echo "Formatting Flutter host app code..."
+	@cd $(MOBILE_HOST_APP_PATH) && flutter format .
+
 # Generate shared models across platforms
 generate-models:
 	@echo "Generating models..."
@@ -164,6 +172,10 @@ clean-mobile:
 	@echo "Cleaning mobile app build artifacts..."
 	@cd $(MOBILE_APP_PATH) && flutter clean
 
+clean-mobile-host:
+	@echo "Cleaning mobile host app build artifacts..."
+	@cd $(MOBILE_HOST_APP_PATH) && flutter clean
+
 # Help
 help:
 	@echo "Monorepo Management Commands:"
@@ -174,6 +186,8 @@ help:
 	@echo "  dev-web        - Start web development server"
 	@echo "  dev-api        - Start API development server"
 	@echo "  dev-mobile     - Start Flutter development"
+	@echo "  dev-mobile-host - Start Flutter development for mobile host"
+	@echo "  dev-mobile-web - Start Flutter development for web"
 	@echo "  lint           - Run all linters"
 	@echo "  format         - Format all code"
 	@echo "  clean          - Clean all build artifacts"

@@ -67,10 +67,36 @@ The binary will be created in the `bin` directory as `api-server`.
 
 ## Testing
 
-Run tests:
+### Running Basic Tests
+
+To run the basic tests without generating a coverage report:
+
 ```bash
 make test-api
 ```
+
+This will run all tests in the API server package.
+
+### Running Tests with Coverage
+
+To run tests and generate a coverage report:
+
+```bash
+cd apps/api-server
+./scripts/test-with-coverage.sh
+```
+
+This will:
+1. Run all tests in the API server package
+2. Generate a coverage profile at `coverage-report/coverage.out`
+3. Generate an HTML coverage report at `coverage-report/coverage.html`
+
+The coverage report directory is ignored by Git, so your coverage reports will not be committed.
+
+### CI Integration
+
+The tests are automatically run in the CI pipeline whenever changes are made to the API server code.
+See the `.github/workflows/ci.yml` file for details of the CI configuration.
 
 ## Project Structure
 

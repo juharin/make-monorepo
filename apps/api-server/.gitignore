@@ -1,0 +1,10 @@
+# Go specific ignores
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Coverage reports
+coverage-report/ 
