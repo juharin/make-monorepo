@@ -109,6 +109,8 @@ dev-mobile-host:
 dev-mobile-web:
 	@echo "Starting Flutter development for web..."
 	@cd $(MOBILE_APP_PATH) && flutter run -d chrome --wasm
+	# TODO: Find out if can copy updated flutter app to web app /public folder (hot reload)
+	#       Can we have Rsbuild in web app watch flutter app for changes?
 
 # Linting
 lint: lint-web lint-api lint-mobile lint-mobile-host
