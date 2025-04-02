@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe';
 import 'dart:ui_web';
 import 'multi_view_app.dart' show MultiViewApp;
 import 'empty_app.dart' show EmptyApp;
-import 'mobile_app.dart' show MobileApp, exportedIncrement;
-import 'view_interop.dart' show InitialViewData;
+import 'mobile_app.dart' show MobileApp;
+import 'js_bridge.dart' show InitialViewData;
 
 void main() {
   // For Flutter web embedding in multi-view mode

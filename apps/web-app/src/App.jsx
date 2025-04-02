@@ -1,10 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
+import { incrementFlutterCounter, initializeReactApi, disposeReactApi } from './flutterBridge';
 
 const App = () => {
   const [message, setMessage] = useState('');
   const [count, setCount] = useState(0);
   const countRef = useRef(count);
+
+  const incrementCounter = () => {
+    setCount(prevCount => prevCount + 1);
+  };
 
   useEffect(() => {
     countRef.current = count;
@@ -18,14 +23,16 @@ const App = () => {
     
     // Expose React state setter to global scope
     window.reactAppBridge = {
-      incrementCount: () => {
-        setCount(prevCount => prevCount + 1);
-      },
+      incrementReactCount: incrementCounter,
       getCount: () => countRef.current
     };
     
+    // Initialize the React API for Flutter
+    initializeReactApi();
+    
     return () => {
       delete window.reactAppBridge;
+      disposeReactApi();
     };
   }, []);
 
@@ -49,9 +56,7 @@ const App = () => {
         <p>You have clicked the button {count} times</p>
         <div className="button-container">
           <button 
-            onClick={() => {
-              setCount(count + 1);
-            }}
+            onClick={incrementCounter}
             className="increment-button"
           >
             Increment
@@ -59,12 +64,10 @@ const App = () => {
         </div>
         <div className="button-container">
           <button 
-            onClick={() => {
-              globalThis.exportedIncrement();
-            }}
+            onClick={incrementFlutterCounter}
             className="increment-button"
           >
-            Increment Dart counter
+            Increment Flutter counter
           </button>
         </div>
         <div

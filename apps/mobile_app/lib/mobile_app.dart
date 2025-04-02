@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe';
 import 'dart:ui_web';
-import 'view_interop.dart' show InitialViewData, incrementCounter;
-
-// Add top-level external setter for JS interop
-@JS()
-external set exportedIncrement(JSFunction value);
+import 'js_bridge.dart' as js_bridge;
 
 class MobileApp extends StatelessWidget {
   const MobileApp({super.key});
@@ -33,15 +28,21 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-// Remove @JS() from this class
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   @override
   void initState() {
     super.initState();
-    // Assign the function to the top-level setter
-    exportedIncrement = _incrementCounter.toJS;
+    js_bridge.initializeJsInterop(
+      incrementCounterFn: _incrementCounter,
+    );
+  }
+  
+  @override
+  void dispose() {
+    js_bridge.disposeJsInterop();
+    super.dispose();
   }
 
   void _incrementCounter() {
@@ -50,19 +51,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  // Remove the external setter from the class
-  // @JS()
-  // external set exportedIncrement(JSFunction value);
-
   void _incrementReactCounter() {
-    incrementCounter();
+    js_bridge.incrementReactCounter();
   }
 
   @override
   Widget build(BuildContext context) {
     final int viewId = View.of(context).viewId;
     final jsInitialData = views.getInitialData(viewId) as JSObject;
-    final initialData = InitialViewData.fromJS(jsInitialData);
+    final initialData = js_bridge.InitialViewData.fromJS(jsInitialData);
 
     return Scaffold(
       appBar: AppBar(
