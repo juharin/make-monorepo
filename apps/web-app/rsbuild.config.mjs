@@ -1,6 +1,5 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
-import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [pluginReact()],
@@ -11,6 +10,7 @@ export default defineConfig({
         tag: 'script',
         attrs: {
           src: 'flutter_bootstrap.js',
+          type: 'module',
           async: true,
         },
         append: false,

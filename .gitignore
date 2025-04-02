@@ -6,7 +6,6 @@
 # Binaries
 node_modules/
 bin/
-public/
 
 # IDE
 .vscode/*

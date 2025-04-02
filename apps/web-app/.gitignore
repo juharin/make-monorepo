@@ -6,8 +6,21 @@
 # Dist
 node_modules/
 dist/
-public/
-
+public/assets/
+public/canvaskit/
+public/icons/
+public/static/
+public/favicon.png
+public/flutter_bootstrap.js
+public/flutter_service_worker.js
+public/flutter.js
+public/index.html
+public/main.dart.js
+public/main.dart.mjs
+public/main.dart.wasm
+public/manifest.json
+public/version.json
+public/viewInterop.js
 # IDE
 .vscode/*
 !.vscode/extensions.json

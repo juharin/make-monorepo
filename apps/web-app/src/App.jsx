@@ -1,15 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 const App = () => {
   const [message, setMessage] = useState('');
   const [count, setCount] = useState(0);
+  const countRef = useRef(count);
+
+  useEffect(() => {
+    countRef.current = count;
+  }, [count]);
 
   useEffect(() => {
     fetch('http://localhost:8080/api/hello')
       .then(response => response.json())
       .then(data => setMessage(data.message))
       .catch(error => console.error('Error fetching hello endpoint:', error));
+    
+    // Expose React state setter to global scope
+    window.reactAppBridge = {
+      incrementCount: () => {
+        setCount(prevCount => prevCount + 1);
+      },
+      getCount: () => countRef.current
+    };
+    
+    return () => {
+      delete window.reactAppBridge;
+    };
   }, []);
 
   return (
@@ -34,11 +51,20 @@ const App = () => {
           <button 
             onClick={() => {
               setCount(count + 1);
-              //window.flutterApp.instance
             }}
             className="increment-button"
           >
             Increment
+          </button>
+        </div>
+        <div className="button-container">
+          <button 
+            onClick={() => {
+              globalThis.exportedIncrement();
+            }}
+            className="increment-button"
+          >
+            Increment Dart counter
           </button>
         </div>
         <div

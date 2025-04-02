@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'dart:ui_web' as ui_web;
-import 'dart:js_interop' as js_interop;
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
+import 'dart:ui_web';
 import 'multi_view_app.dart' show MultiViewApp;
 import 'empty_app.dart' show EmptyApp;
-import 'mobile_app.dart' show MobileApp;
+import 'mobile_app.dart' show MobileApp, exportedIncrement;
+import 'view_interop.dart' show InitialViewData;
 
 void main() {
   // For Flutter web embedding in multi-view mode
@@ -11,8 +13,9 @@ void main() {
     MultiViewApp(
       viewBuilder: (BuildContext context) {
         final int viewId = View.of(context).viewId;
-        final initialData = ui_web.views.getInitialData(viewId) as InitialViewData;
-        if (initialData.appIdentifier == 'mobile-app') {
+        final jsInitialData = views.getInitialData(viewId) as JSObject;
+        final initialData = InitialViewData.fromJS(jsInitialData);
+        if (initialData.appIdentifier == 'mobile_app') {
           return const MobileApp();
         }
         return const EmptyApp();
@@ -20,9 +23,3 @@ void main() {
     ),
   );
 }
-
-class InitialViewData {
-  final String appIdentifier;
-  InitialViewData({required this.appIdentifier});
-}
-

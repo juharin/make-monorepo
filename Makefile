@@ -10,6 +10,7 @@ API_SERVER_PATH := apps/api-server
 MOBILE_APP_PATH := apps/mobile_app
 MOBILE_HOST_APP_PATH := apps/mobile_host_app
 SCRIPTS_PATH := scripts
+PACKAGES_PATH := packages
 
 # Default target
 all: help
@@ -66,7 +67,9 @@ build-mobile-host:
 build-mobile-web:
 	@echo "Building mobile app for web..."
 	@cd $(MOBILE_APP_PATH) && flutter build web --wasm
+#	@cd $(MOBILE_APP_PATH) && flutter build web
 	@cp -r $(MOBILE_APP_PATH)/build/web/* $(WEB_APP_PATH)/public
+	@cp $(WEB_APP_PATH)/src/viewInterop.js $(WEB_APP_PATH)/public
 	@echo "Mobile app for web built successfully"
 
 # Test targets

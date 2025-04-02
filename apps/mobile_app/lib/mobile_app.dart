@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
-import 'dart:ui_web' as ui_web;
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
+import 'dart:ui_web';
+import 'view_interop.dart' show InitialViewData, incrementCounter;
+
+// Add top-level external setter for JS interop
+@JS()
+external set exportedIncrement(JSFunction value);
 
 class MobileApp extends StatelessWidget {
   const MobileApp({super.key});
@@ -26,10 +33,16 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+// Remove @JS() from this class
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  //final initialData = ui_web.views.getInitialData(viewId) as YourJsInteropType;
+  @override
+  void initState() {
+    super.initState();
+    // Assign the function to the top-level setter
+    exportedIncrement = _incrementCounter.toJS;
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -37,8 +50,20 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // Remove the external setter from the class
+  // @JS()
+  // external set exportedIncrement(JSFunction value);
+
+  void _incrementReactCounter() {
+    incrementCounter();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final int viewId = View.of(context).viewId;
+    final jsInitialData = views.getInitialData(viewId) as JSObject;
+    final initialData = InitialViewData.fromJS(jsInitialData);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -49,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('This is an embeddable Flutter app in multi-view mode.'),
+            Text('Random int value from initial data: ${initialData.randomIntValue}'),
             const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
@@ -58,12 +84,26 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        key: const Key('embedded_app_fab'),
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            key: const Key('local_fab'),
+            onPressed: _incrementCounter,
+            tooltip: 'Increment local counter',
+            heroTag: 'local_fab',
+            child: const Icon(Icons.add),
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton(
+            key: const Key('external_fab'),
+            onPressed: _incrementReactCounter,
+            tooltip: 'Increment external counter',
+            heroTag: 'external_fab',
+            child: const Text('Increment React counter'),
+          ),
+        ],
+      ),
     );
   }
 }
