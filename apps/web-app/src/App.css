@@ -1,8 +1,15 @@
 body {
   margin: 0;
   color: #333;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background-image: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+}
+
+body h1 {
+  font-size: 3.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #555;
 }
 
 .app {
@@ -12,13 +19,12 @@ body {
 }
 
 .navbar {
-  background-color: rgba(46, 125, 50, 0.1);
+  background-color: rgba(248, 249, 250, 0.8);
   padding: 1rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid rgba(46, 125, 50, 0.3);
 }
 
 .navbar-brand {
@@ -29,12 +35,11 @@ body {
 }
 
 .navbar-brand h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #1b5e20;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #313131;
   margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
-  letter-spacing: 0.5px;
+  padding-left: 1.6rem;
 }
 
 .content {
@@ -46,6 +51,10 @@ body {
   justify-content: center;
   padding: 2rem 1rem;
   padding-bottom: 2rem;
+}
+
+.content-header {  
+  padding-bottom: 3rem;
 }
 
 .logo-container {
@@ -62,14 +71,40 @@ body {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
+.logo-react-navbar {
+  width: 48px;
+  height: 48px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo-github-navbar {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.logo-github-navbar:hover {
+  transform: scale(1.1);
+}
+
 .logo-flutter {
   height: 60px;
   transition: transform 0.3s ease;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
+.logo-go {
+  width: 72px;
+  height: 72px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
 .logo-react:hover,
-.logo-flutter:hover {
+.logo-flutter:hover,
+.logo-go:hover {
   transform: scale(1.1);
 }
 
@@ -81,21 +116,20 @@ body {
 
 .api-message {
   font-size: 1.4rem;
-  font-weight: 600;
-  color: #2e7d32;
-  background-color: rgba(46, 125, 50, 0.1);
+  font-weight: 400;
+  background-color: rgba(248, 249, 250, 0.8);
   padding: 12px 24px;
   border-radius: 8px;
   margin: 20px auto;
   max-width: 80%;
-  border: 1px solid rgba(46, 125, 50, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.logo-go {
+.logo-go-message {
   width: 32px;
   height: 32px;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
@@ -153,4 +187,10 @@ body {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain;
+}
+
+.github-link-navbar {
+  margin-left: auto; /* Push the link (and logo) to the right */
+  display: flex; /* Ensure the link itself behaves correctly in flex context */
+  align-items: center;
 }

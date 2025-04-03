@@ -40,17 +40,30 @@ const App = () => {
     <div className="app">
       <nav className="navbar">
         <div className="navbar-brand">
-          <h1>React x Flutter</h1>
+        <img src="/images/react-logo.svg" alt="React Logo" className="logo-react-navbar" />
+          <h1>React Host App</h1>
+          <a 
+            href="https://github.com/juharin/make-monorepo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="github-link-navbar"
+          >
+            <img src="/images/github-mark.svg" alt="GitHub Logo" className="logo-github-navbar" />
+          </a>
         </div>
       </nav>
       <div className="content">
+        <div className="content-header">
+          <h1>Embed Flutter apps in React</h1>
+        </div>
         <div className="logo-container">
           <img src="/images/react-logo.svg" alt="React Logo" className="logo-react" />
           <img src="/images/flutter-logo.svg" alt="Flutter Logo" className="logo-flutter" />
+          <img src="/images/Go-Logo_Blue.svg" alt="Go Logo" className="logo-go" />
         </div>
         <p>Bundling with Rsbuild. Calls a Go API and embeds a Flutter view.</p>
         <div className="api-message">
-          <img src="/images/Go-Logo_Blue.svg" alt="Go Logo" className="logo-go" />
+          <img src="/images/Go-Logo_Blue.svg" alt="Go Logo" className="logo-go-message" />
           <span>{message}</span>
         </div>
         <p>You have clicked the button {count} times</p>
