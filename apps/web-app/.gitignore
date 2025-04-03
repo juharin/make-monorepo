@@ -20,7 +20,7 @@ public/main.dart.mjs
 public/main.dart.wasm
 public/manifest.json
 public/version.json
-public/viewInterop.js
+public/flutterBridge.js
 # IDE
 .vscode/*
 !.vscode/extensions.json

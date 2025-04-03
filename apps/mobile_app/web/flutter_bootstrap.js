@@ -2,7 +2,7 @@
 {{flutter_build_config}}
 
 // Import the InitialViewData class
-import { InitialViewData } from './viewInterop.js';
+import { InitialViewData } from './flutterBridge.js';
 
 // Create a global object to hold Flutter-related functionality
 window.flutterApp = window.flutterApp || {};

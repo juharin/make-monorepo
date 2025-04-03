@@ -63,43 +63,118 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('This is an embeddable Flutter app in multi-view mode.'),
-            Text('Random int value from initial data: ${initialData.randomIntValue}'),
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              key: const Key('embedded_app_counter'),
-              style: Theme.of(context).textTheme.headlineMedium,
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Theme.of(context).colorScheme.primary.withOpacity(0.8),
+                Theme.of(context).colorScheme.secondary.withOpacity(0.9),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                offset: const Offset(0, 2),
+                blurRadius: 4,
+              ),
+            ],
+          ),
+        ),
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.flutter_dash, size: 22, color: Colors.white),
+            const SizedBox(width: 8),
+            const Text(
+              'Multi-view mode app',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+                letterSpacing: 0.5,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
+        centerTitle: true,
+        elevation: 0,
+        toolbarHeight: 48,
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            key: const Key('local_fab'),
-            onPressed: _incrementCounter,
-            tooltip: 'Increment local counter',
-            heroTag: 'local_fab',
-            child: const Icon(Icons.add),
-          ),
-          const SizedBox(height: 16),
-          FloatingActionButton(
-            key: const Key('external_fab'),
-            onPressed: _incrementReactCounter,
-            tooltip: 'Increment external counter',
-            heroTag: 'external_fab',
-            child: const Text('Increment React counter'),
-          ),
-        ],
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Random value from React: ${initialData.randomIntValue}',
+              style: const TextStyle(fontSize: 14),
+            ),
+            const SizedBox(height: 24),
+            Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                child: Text(
+                  '$_counter',
+                  key: const Key('embedded_app_counter'),
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 36,
+                  child: ElevatedButton.icon(
+                    key: const Key('local_fab'),
+                    onPressed: _incrementCounter,
+                    icon: const Icon(Icons.add, color: Colors.white, size: 18),
+                    label: const Text('Flutter', style: TextStyle(color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      minimumSize: const Size(0, 36),
+                      elevation: 2,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                SizedBox(
+                  height: 36,
+                  child: ElevatedButton.icon(
+                    key: const Key('external_fab'),
+                    onPressed: _incrementReactCounter,
+                    icon: const Icon(Icons.add, color: Colors.white, size: 18),
+                    label: const Text('React', style: TextStyle(color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      minimumSize: const Size(0, 36),
+                      elevation: 2,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

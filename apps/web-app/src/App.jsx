@@ -54,44 +54,88 @@ const App = () => {
       </nav>
       <div className="content">
         <div className="content-header">
-          <h1>Embed Flutter apps in React</h1>
+          <h1>Embed Flutter apps in React 🤝</h1>
         </div>
-        <div className="logo-container">
-          <img src="/images/react-logo.svg" alt="React Logo" className="logo-react" />
-          <img src="/images/flutter-logo.svg" alt="Flutter Logo" className="logo-flutter" />
-          <img src="/images/Go-Logo_Blue.svg" alt="Go Logo" className="logo-go" />
-        </div>
-        <p>Bundling with Rsbuild. Calls a Go API and embeds a Flutter view.</p>
-        <div className="api-message">
-          <img src="/images/Go-Logo_Blue.svg" alt="Go Logo" className="logo-go-message" />
-          <span>{message}</span>
-        </div>
-        <p>You have clicked the button {count} times</p>
-        <div className="button-container">
-          <button 
-            onClick={incrementCounter}
-            className="increment-button"
-          >
-            Increment
-          </button>
-        </div>
-        <div className="button-container">
-          <button 
-            onClick={incrementFlutterCounter}
-            className="increment-button"
-          >
-            Increment Flutter counter
-          </button>
-        </div>
-        <div
-          className="flutter-wrapper"
-          data-testid="flutter-wrapper"
-        >
-          <div
-            id="flutter-container"
-          />
+        
+        <div className="cards-container">
+          {/* React Card */}
+          <div className="card">
+            <div className="card-header">
+              <img src="/images/react-logo.svg" alt="React Logo" className="card-logo" />
+              <h2 className="card-title">React Counter</h2>
+            </div>
+            <div className="card-content">
+              <div className="counter-display">
+                <div className="counter-value">{count}</div>
+              </div>
+              <div className="button-container">
+                <button 
+                  onClick={incrementCounter}
+                  className="increment-button"
+                >
+                  + React
+                </button>
+              </div>
+              <div className="button-container">
+                <button 
+                  onClick={incrementFlutterCounter}
+                  className="increment-button"
+                >
+                  + Flutter
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Flutter Card */}
+          <div className="card">
+            <div className="card-header">
+              <img src="/images/flutter-logo.svg" alt="Flutter Logo" className="card-logo" />
+              <h2 className="card-title">Embedded Flutter app</h2>
+            </div>
+            <div className="card-content">
+              <div className="flutter-wrapper" data-testid="flutter-wrapper">
+                <div id="flutter-container" />
+              </div>
+            </div>
+          </div>
+
+          {/* Go API Card */}
+          <div className="card">
+            <div className="card-header">
+              <img src="/images/Go-Logo_Blue.svg" alt="Go Logo" className="card-logo go" />
+              <h2 className="card-title">Go API</h2>
+            </div>
+            <div className="card-content">
+              <p style={{ marginBottom: '10px' }}>Message from Go API server:</p>
+              <div className="api-message">
+                <span>{message}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      
+      <footer className="footer">
+        <div className="footer-content">
+          <p>Make-based monorepo demonstrating cross-platform integration of React, Flutter, and Go</p>
+          <div className="footer-links">
+            <a href="https://github.com/juharin/make-monorepo" target="_blank" rel="noopener noreferrer" className="footer-link">
+              GitHub Repository
+            </a>
+            <a href="https://react.dev" target="_blank" rel="noopener noreferrer" className="footer-link">
+              React
+            </a>
+            <a href="https://flutter.dev" target="_blank" rel="noopener noreferrer" className="footer-link">
+              Flutter
+            </a>
+            <a href="https://go.dev" target="_blank" rel="noopener noreferrer" className="footer-link">
+              Go
+            </a>
+          </div>
+          <p style={{ marginTop: '1.5rem', fontSize: '0.9rem' }}>{new Date().getFullYear()} 👋 Juha Rinne</p>
+        </div>
+      </footer>
     </div>
   );
 };

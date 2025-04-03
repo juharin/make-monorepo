@@ -69,7 +69,7 @@ build-mobile-web:
 	@cd $(MOBILE_APP_PATH) && flutter build web --wasm
 #	@cd $(MOBILE_APP_PATH) && flutter build web
 	@cp -r $(MOBILE_APP_PATH)/build/web/* $(WEB_APP_PATH)/public
-	@cp $(WEB_APP_PATH)/src/viewInterop.js $(WEB_APP_PATH)/public
+	@cp $(WEB_APP_PATH)/src/flutterBridge.js $(WEB_APP_PATH)/public
 	@echo "Mobile app for web built successfully"
 
 # Test targets
