@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:js_interop';
-import 'dart:ui_web';
-import 'js_bridge.dart' as js_bridge;
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'web/utils.dart' if (dart.library.io) 'stub/utils.dart';
 
 class MobileApp extends StatelessWidget {
   const MobileApp({super.key});
@@ -34,14 +33,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    js_bridge.initializeJsInterop(
-      incrementCounterFn: _incrementCounter,
-    );
+    initializeJsInterop(_incrementCounter);
   }
   
   @override
   void dispose() {
-    js_bridge.disposeJsInterop();
+    disposeJsInterop();
     super.dispose();
   }
 
@@ -52,14 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _incrementReactCounter() {
-    js_bridge.incrementReactCounter();
+    incrementReactCounter();
   }
 
   @override
   Widget build(BuildContext context) {
-    final int viewId = View.of(context).viewId;
-    final jsInitialData = views.getInitialData(viewId) as JSObject;
-    final initialData = js_bridge.InitialViewData.fromJS(jsInitialData);
+    final int randomIntValue = getRandomIntValue(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -89,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Icon(Icons.flutter_dash, size: 22, color: Colors.white),
             const SizedBox(width: 8),
             const Text(
-              'Multi-view mode app',
+              kIsWeb ? 'Multi-view mode app' : 'Normal mode app',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
@@ -108,10 +103,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Random value from React: ${initialData.randomIntValue}',
+            kIsWeb ? Text(
+              'Random value from React: $randomIntValue',
               style: const TextStyle(fontSize: 14),
-            ),
+            ) : Text('Not on web, so no random value from React'),
             const SizedBox(height: 24),
             Card(
               elevation: 4,
@@ -152,25 +147,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 16),
-                SizedBox(
-                  height: 36,
-                  child: ElevatedButton.icon(
-                    key: const Key('external_fab'),
-                    onPressed: _incrementReactCounter,
-                    icon: const Icon(Icons.add, color: Colors.white, size: 18),
-                    label: const Text('React', style: TextStyle(color: Colors.white)),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                if (kIsWeb) 
+                  const SizedBox(width: 16),
+                if (kIsWeb) 
+                  SizedBox(
+                    height: 36,
+                    child: ElevatedButton.icon(
+                      key: const Key('external_fab'),
+                      onPressed: _incrementReactCounter,
+                      icon: const Icon(Icons.add, color: Colors.white, size: 18),
+                      label: const Text('React', style: TextStyle(color: Colors.white)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.secondary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        minimumSize: const Size(0, 36),
+                        elevation: 2,
                       ),
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      minimumSize: const Size(0, 36),
-                      elevation: 2,
                     ),
                   ),
-                ),
               ],
             ),
           ],

@@ -97,10 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 12),
-            const Text(
-              'Counter value:',
-              style: TextStyle(fontSize: 14),
-            ),
             const SizedBox(height: 8),
             Card(
               elevation: 4,
