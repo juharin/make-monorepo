@@ -87,78 +87,81 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
         toolbarHeight: 48,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'This is the host Flutter app',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            const SizedBox(height: 12),
-            const SizedBox(height: 8),
-            Card(
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 32),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'This is the host Flutter app',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                child: Text(
-                  '$_counter',
-                  key: const Key('host_app_counter'),
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
+              const SizedBox(height: 12),
+              const SizedBox(height: 8),
+              Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                  child: Text(
+                    '$_counter',
+                    key: const Key('host_app_counter'),
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
-            SizedBox(
-              height: 36,
-              child: ElevatedButton.icon(
-                key: const Key('host_app_fab'),
-                onPressed: _incrementCounter,
-                icon: const Icon(Icons.add, color: Colors.white, size: 18),
-                label: const Text('Increment', style: TextStyle(color: Colors.white)),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              const SizedBox(height: 24),
+              SizedBox(
+                height: 36,
+                child: ElevatedButton.icon(
+                  key: const Key('host_app_fab'),
+                  onPressed: _incrementCounter,
+                  icon: const Icon(Icons.add, color: Colors.white, size: 18),
+                  label: const Text('Increment', style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    minimumSize: const Size(0, 36),
+                    elevation: 2,
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  minimumSize: const Size(0, 36),
-                  elevation: 2,
                 ),
               ),
-            ),
-            const SizedBox(height: 32),
-            const Text(
-              'Embedded app:',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            const SizedBox(height: 16),
-            Container(
-              height: 300,
-              decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).colorScheme.outline.withOpacity(0.5)),
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
+              const SizedBox(height: 32),
+              const Text(
+                'Embedded app:',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: MobileApp(),
+              const SizedBox(height: 16),
+              Container(
+                height: 300,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Theme.of(context).colorScheme.outline.withOpacity(0.5)),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: MobileApp(),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

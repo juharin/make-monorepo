@@ -17,7 +17,12 @@ const App = () => {
 
   useEffect(() => {
     fetch('http://localhost:8080/api/hello')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => setMessage(data.message))
       .catch(error => console.error('Error fetching hello endpoint:', error));
     
