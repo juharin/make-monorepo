@@ -52,8 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Theme.of(context).colorScheme.primary.withOpacity(0.8),
-                Theme.of(context).colorScheme.secondary.withOpacity(0.9),
+                Theme.of(context).colorScheme.primary.withAlpha((0.8 * 255).round()),
+                Theme.of(context).colorScheme.secondary.withAlpha((0.9 * 255).round()),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -145,11 +145,11 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 height: 300,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Theme.of(context).colorScheme.outline.withOpacity(0.5)),
+                  border: Border.all(color: Theme.of(context).colorScheme.outline.withAlpha((0.5 * 255).round())),
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withAlpha((0.05 * 255).round()),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),

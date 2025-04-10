@@ -63,8 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Theme.of(context).colorScheme.primary.withOpacity(0.8),
-                Theme.of(context).colorScheme.secondary.withOpacity(0.9),
+                Theme.of(context).colorScheme.primary.withAlpha((0.8 * 255).round()),
+                Theme.of(context).colorScheme.secondary.withAlpha((0.9 * 255).round()),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
