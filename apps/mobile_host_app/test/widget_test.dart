@@ -58,6 +58,10 @@ void main() {
     );
     expect(embeddedFabFinder, findsOneWidget);
 
+    // Ensure the FAB is visible before tapping
+    await tester.ensureVisible(embeddedFabFinder);
+    await tester.pumpAndSettle(); // Wait for scroll animation
+
     // Tap the embedded FAB.
     await tester.tap(embeddedFabFinder);
     await tester.pump();
