@@ -1,6 +1,6 @@
-# Make Monorepo
+# Embed Flutter Monorepo
 
-A demonstration of building modular applications in a monorepo structure. This project showcases how to create and integrate different types of applications (web, mobile, API) while sharing code and maintaining a clean architecture.
+A demonstration of building modular applications in a monorepo structure, focusing on embedding Flutter apps within different host applications (web, mobile). This project showcases how to create and integrate different types of applications while sharing code and maintaining a clean architecture using Make for build orchestration.
 
 ## Project Structure
 
@@ -44,8 +44,8 @@ A demonstration of building modular applications in a monorepo structure. This p
 
 1. Clone the repository:
    ```bash
-   git clone git@github.com:juharin/make-monorepo.git
-   cd make-monorepo
+   git clone git@github.com:juharin/embed-flutter.git
+   cd embed-flutter
    ```
 
 2. Install dependencies:
